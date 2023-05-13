@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+    public function inedx()
+    {
+        return view('files.index');
+    }
+
+
     public function import(Request $request) 
 {
     $file = $request->file('documento');
@@ -16,6 +22,7 @@ class FileController extends Controller
     $path = $file->storeAs('import', $name);
 
     $data = Excel::toArray(new FilesImport, storage_path('app/' . $path));
+    dd($data);
 
     // Faça o que precisar com a matriz de dados...
 
