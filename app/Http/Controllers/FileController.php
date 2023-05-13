@@ -21,11 +21,9 @@ class FileController extends Controller
     $name = 'prefixo-' . $file->getClientOriginalName();
     $path = $file->storeAs('import', $name);
 
-    $data = Excel::toArray(new FilesImport, storage_path('app/' . $path));
-    dd($data);
+    $dados = Excel::toArray(new FilesImport, storage_path('app/' . $path));
+    dd(array_slice($dados[1], 1));
 
-    // Faça o que precisar com a matriz de dados...
-
-    return redirect('/')->with('success', 'All good!');
+    return view('files.index', compact('dados'));
 }
 }

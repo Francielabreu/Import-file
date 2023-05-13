@@ -71,14 +71,15 @@
         </tr>
         </thead>
         <tbody>
-              @foreach ($dados as $dado) 
+              {{-- @dd($dados[1])  --}}
+              @foreach (array_slice($dados[1], 1) as $row) 
+              
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <a href="#" class="bg-green-200 rounded py-2 px-6">Editar</a>
                     </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $dado[0] }}</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $dado[1] }}</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $dado[2] }}</td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $row[0] }}</td>
+                    
                     
                     
                 </tr>
