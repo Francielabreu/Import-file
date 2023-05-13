@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
-    public function inedx()
+    public function index()
     {
         return view('files.index');
     }
