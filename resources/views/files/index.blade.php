@@ -4,9 +4,9 @@
 @section('content')
 <h1 class="text-4xl font-bold leading-tigh py-4 uppercase text-center uppercase">Didática Digital</h1>
 
-<form method="POST" action="#" enctype="multipart/form-data">
+<form method="POST" action="{{ route('files.import') }}" enctype="multipart/form-data">
     @csrf
-    <input type="file" name="import" class="bg-orange-400 rounded text-white px-2 py-1 uppercase">
+    <input type="file" name="documento" class="bg-orange-400 rounded text-white px-2 py-1 uppercase">
     <button type="submit" class="bg-orange-400 rounded text-white px-3 py-2 uppercase">Importar</button>
 
 </form>
@@ -71,18 +71,18 @@
         </tr>
         </thead>
         <tbody>
-             {{-- @foreach ($datas as $data) --}}
+              @foreach ($dados as $dado) 
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <a href="#" class="bg-green-200 rounded py-2 px-6">Editar</a>
                     </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">#</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">#</td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">#</td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $dado[0] }}</td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $dado[1] }}</td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $dado[2] }}</td>
                     
                     
                 </tr>
-            {{-- @endforeach  --}}
+            @endforeach 
         </tbody>
     </table>
 @endsection

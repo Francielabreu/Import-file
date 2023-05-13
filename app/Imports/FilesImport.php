@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\User;
+use App\Models\File;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class UsersImport implements ToModel
+class FilesImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,9 +14,8 @@ class UsersImport implements ToModel
     */
     public function model(array $row)
     {
-        return new User([
-            
-            
+        return new File([
+            //
         ]);
     }
 }
