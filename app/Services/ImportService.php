@@ -15,7 +15,7 @@ class ImportService
         $path = $file->storeAs('import', $name);
 
         $dados = Excel::toArray(new FilesImport, storage_path('app/' . $path));
-        
+            
         return $dados;
     }
 }
