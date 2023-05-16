@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Imports\FilesImport;
+use App\Services\ImportService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+
+    private $importService;
+
+    public function __construct(ImportService $importService)
+    {
+        $this->importService = $importService;
+    }
+    
     public function index()
     {
         return view('files.index');
@@ -17,13 +26,8 @@ class FileController extends Controller
 
     public function import(Request $request) 
 {
-    $file = $request->file('documento');
-    $name = 'prefixo-' . $file->getClientOriginalName();
-    $path = $file->storeAs('import', $name);
-
-    $dados = Excel::toArray(new FilesImport, storage_path('app/' . $path));
-    dd(array_slice($dados[1], 1));
-
-    return view('files.index', compact('dados'));
+    
+    $dados = $this->importService->getImportFile($request);
+    return view('files.index', ['dados' => $dados]);
 }
 }

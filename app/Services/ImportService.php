@@ -1,19 +1,21 @@
 <?php
 
 namespace App\Services;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\FilesImport;
 
 class ImportService
 {
-    public function getImportFile($filename)
+    public function getImportFile(Request $request)
     {
-        $path = storage_path('app/import/' . $filename);
-        $contents = Storage::get($path);
-        $data = Excel::toArray(new FilesImport, $contents);
+        $file = $request->file('documento');
+        $name = $file->getClientOriginalName();
+        $path = $file->storeAs('import', $name);
 
-        return $data;
+        $dados = Excel::toArray(new FilesImport, storage_path('app/' . $path));
+        
+        return $dados;
     }
 }
